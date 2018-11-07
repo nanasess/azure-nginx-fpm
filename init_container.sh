@@ -33,6 +33,6 @@ if test ! -e /home/LogFiles/nginx/error.log; then
     touch /home/LogFiles/nginx/error.log
 fi
 
-/usr/sbin/nginx -g "daemon off; load_module /etc/nginx/modules/ngx_http_perl_module-debug.so;"
+/usr/sbin/nginx -g "load_module /etc/nginx/modules/ngx_http_perl_module-debug.so;"
 
 
