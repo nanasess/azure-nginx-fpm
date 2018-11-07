@@ -68,11 +68,8 @@ RUN set -ex \
 # =========
 
 RUN set -ex\
-    && test ! -d /var/www && mkdir -p /var/www \
-	&& chown -R www-data:www-data /var/www
-RUN set -ex\
-    && mkdir -p /home/site/wwwroot \
-    && chown -R www-data:www-data /home/site/wwwroot
+    && mkdir -p /home/site/html \
+    && chown -R www-data:www-data /home/site/html
 # ssh
 COPY sshd_config /etc/ssh/
 
@@ -90,7 +87,7 @@ RUN rm /etc/nginx/conf.d/*
 COPY init_container.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/init_container.sh
 
-RUN echo "<?php phpinfo(); " > /home/site/wwwroot/index.php
+RUN echo "<?php phpinfo(); " > /home/site/html/index.php
 
 EXPOSE 2222 80 1337
 ENTRYPOINT ["init_container.sh"]
