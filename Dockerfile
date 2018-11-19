@@ -47,7 +47,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN apt-get update && apt-get install -y \
     php7.2-dev php7.2-cli php7.2-common php7.2-mbstring php7.2-fpm php-pear \
-    php7.2-apcu php7.2-gd php7.2-xml php7.2-curl php7.2-zip php7.2-pgsql php7.2-mysql \
+    php7.2-apcu php7.2-gd php7.2-xml php7.2-curl php7.2-zip php7.2-pgsql php7.2-mysql php7.2-intl \
     && rm -rf /var/lib/apt/lists/*
 
 
@@ -88,6 +88,8 @@ COPY init_container.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/init_container.sh
 
 RUN echo "<?php phpinfo(); " > /home/site/html/index.php
+
+VOLUME ["/home/site/html"]
 
 EXPOSE 2222 80 1337
 ENTRYPOINT ["init_container.sh"]
